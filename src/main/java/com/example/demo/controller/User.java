@@ -7,7 +7,20 @@ public class User {
 
 	private String name;
 	private int age;
+	private int id;
 	
+	public User() {
+		
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public User(String name, int age) {
 		super();
 		this.name = name;
