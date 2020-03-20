@@ -8,14 +8,20 @@ import com.example.demo.controller.User;
 
 public interface UserMapper {
 	public List<User> sl();
-
-//	@Select("SELECT * FROM user")
-	//@Results(id="userMap", value= {
-		//@Result(property = "id", column = "id", jdbcType=JdbcType.INTEGER, id = true),
-		//@Result(property = "age", column = "age", jdbcType=JdbcType.INTEGER),
-		//@Result(property = "name", column = "name", jdbcType=JdbcType.VARCHAR)
-	//})
+	
+	public List<User> getAll();
+	
+	void insert(User user);
+/*
+	@Select("SELECT * FROM user")
+	@Results(id="userMap", value= {
+		@Result(property = "id", column = "id", jdbcType=JdbcType.INTEGER, id = true),
+		@Result(property = "age", column = "age", jdbcType=JdbcType.INTEGER),
+		@Result(property = "name", column = "name", jdbcType=JdbcType.VARCHAR)
+	})
 	List<User> getAll();
+	*/
+	
 	/*
 	@Select("SELECT * FROM user where id = #{id}")
 	@ResultMap(value="userMap")

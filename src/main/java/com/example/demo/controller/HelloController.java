@@ -10,15 +10,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.mapper.UserMapper;
-import com.example.demo.ser.UserService;
 
 
-@RestController
+
+@Controller
 @RequestMapping("/hw")
 public class HelloController {
 
-	@Autowired
-	private UserService us;
 	
 	@RequestMapping(value = "/hello4", method = RequestMethod.GET)
 	public String hello(Model model) {
@@ -26,8 +24,8 @@ public class HelloController {
 		return "hello";
 	}
 
-	//@Autowired
-	//private UserMapper userMapper;
+	@Autowired
+	private UserMapper userMapper;
 
 	@RequestMapping(value = "/hello6.do", method = RequestMethod.GET)
 	public List<User> sl() {
@@ -37,14 +35,14 @@ public class HelloController {
 
 		//model.addAttribute("users", userMapper.getAll());
 		//return "hello";
-		return us.sl();
+		return userMapper.sl();
 	}
 	
-	/*
+	
 	@RequestMapping(value = "/hello7.do", method = RequestMethod.GET)
 	public String hello7(Model model) {
 		model.addAttribute("users", userMapper.getAll());
 		return "hello";
 	}
-	*/
+	
 }
