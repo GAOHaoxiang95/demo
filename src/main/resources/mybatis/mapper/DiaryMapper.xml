@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.DiaryMapper">
+	<resultMap id = "BaseResultMap" type="com.example.demo.controller.Diary">
+		<id column="article_id" property="id" jdbcType="NUMERIC"/>
+		<result column="title" property="title" jdbcType="VARCHAR"/>
+		<result column="content" property="content" jdbcType="VARCHAR"/>
+		<result column="img_url" property="img_url" jdbcType="VARCHAR"/>
+		<result column="create_time" property="createDate" jdbcType="DATE"/>
+		<result column="last_edit_time" property="modifyDate" jdbcType="DATE"/>
+	</resultMap>
+	    
+	<sql id="Base_Column_List">
+		article_id, title, content, img_url, create_time, last_edit_time
+	</sql>
+	
+	<select id="getAll" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM article
+	</select>
+	
+	<insert id="insertContent" parameterType="com.example.demo.controller.Diary">
+	INSERT INTO article (title, content, create_time,last_edit_time) VALUES (#{title}, #{content},#{create_time}, #{last_edit_time})
+	</insert>
+</mapper>

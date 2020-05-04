@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>hello</title>
+</head>
+
+<body>   
+<a href="/us/addDiary">Add new Diary</a>
+
+	<table border="1">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Title</th>
+				<th>Context</th>
+				<th>Create Date</th>
+				<th>Last Modified Date</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="diary,diaryState: ${diaries}">
+				<td th:text="${diaryState.index}"></td>
+				<td th:text="${diary.title}"></td>
+				<td th:text="${diary.content}"></td>
+				<td th:text="${diary.createDate}"></td>
+				<td th:text="${diary.modifyDate}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

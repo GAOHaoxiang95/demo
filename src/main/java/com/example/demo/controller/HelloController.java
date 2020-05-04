@@ -9,40 +9,58 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.mapper.DiaryMapper;
 import com.example.demo.mapper.UserMapper;
 
 
 
 @Controller
-@RequestMapping("/hw")
+@RequestMapping("/us")
 public class HelloController {
+	@Autowired
+	private UserMapper userMapper;
 
-	
+	@Autowired
+	private DiaryMapper diaryMapper;
+	/*
 	@RequestMapping(value = "/hello4", method = RequestMethod.GET)
 	public String hello(Model model) {
 		model.addAttribute("users", User.getUsers());
 		return "hello";
 	}
 
-	@Autowired
-	private UserMapper userMapper;
-
 	@RequestMapping(value = "/hello6.do", method = RequestMethod.GET)
 	public List<User> sl() {
 		//User u = new User("lily", 15);
 		//u.setId(3);
 		//userMapper.insert(u);
-
+		//this is a test
 		//model.addAttribute("users", userMapper.getAll());
 		//return "hello";
 		return userMapper.sl();
 	}
-	
+	*/
 	
 	@RequestMapping(value = "/hello7.do", method = RequestMethod.GET)
 	public String hello7(Model model) {
 		model.addAttribute("users", userMapper.getAll());
 		return "hello";
+	}
+	
+	@RequestMapping(value = "/diary", method = RequestMethod.GET)
+	public String context(Model model) {
+		model.addAttribute("diaries", diaryMapper.getAll());
+		return "diary";
+	}
+	
+	@RequestMapping(value = "/addDiary", method = RequestMethod.GET)
+	public String add(Model model) {
+		return "login";
+	}
+	
+	@RequestMapping(value= "/upload", method = RequestMethod.GET)
+	public String upload(Model model) {
+		return "";
 	}
 	
 }
