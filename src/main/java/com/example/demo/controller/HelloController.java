@@ -1,12 +1,14 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.mapper.DiaryMapper;
@@ -59,8 +61,15 @@ public class HelloController {
 	}
 	
 	@RequestMapping(value= "/upload", method = RequestMethod.GET)
-	public String upload(Model model) {
-		return "";
+	public String upload(@RequestParam Map<String,String> param) {
+		String title = param.get("title");
+		String create_date = param.get("create_date");
+		String content = param.get("content");
+		
+		System.out.println(content);
+		System.out.println(title);
+		System.out.println(create_date);
+		return "success";
 	}
 	
 }
