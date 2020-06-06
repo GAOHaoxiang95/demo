@@ -8,6 +8,8 @@ public interface DiaryMapper {
 
 	public List<Diary> getAll();
 	
-	public void insertContent();
+	public void insertContent(String title, String content, String create_date);
+
+	//public void insertContent(Diary d);
 	
 }

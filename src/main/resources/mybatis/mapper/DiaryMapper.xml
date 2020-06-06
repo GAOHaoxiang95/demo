@@ -20,7 +20,7 @@
 		FROM article
 	</select>
 	
-	<insert id="insertContent" parameterType="com.example.demo.controller.Diary">
-	INSERT INTO article (title, content, create_time,last_edit_time) VALUES (#{title}, #{content},#{create_time}, #{last_edit_time})
+	<insert id="insertContent" parameterType="java.lang.String">
+		INSERT INTO article (title, content, create_time) VALUES (#{title}, #{content}, #{create_date})
 	</insert>
 </mapper>

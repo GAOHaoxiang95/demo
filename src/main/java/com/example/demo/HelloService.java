@@ -6,6 +6,6 @@ public class HelloService {
 	
 	@RequestMapping(name="/hello", method=RequestMethod.GET)
 	public String hello() {
-		return "hello SB";
+		return "hello, welcome to my site!";
 	}
 }

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -69,6 +70,14 @@ public class HelloController {
 		System.out.println(content);
 		System.out.println(title);
 		System.out.println(create_date);
+		
+//		//Diary d = new Diary();
+//		d.setContent(content);
+//		d.setTitle(title);
+//		d.setCreateDate(new Date(create_date));
+//		
+		System.out.println(title);
+		diaryMapper.insertContent(title, content, create_date);
 		return "success";
 	}
 	
