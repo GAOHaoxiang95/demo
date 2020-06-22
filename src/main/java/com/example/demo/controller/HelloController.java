@@ -1,16 +1,21 @@
 package com.example.demo.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.mapper.DiaryMapper;
 import com.example.demo.mapper.UserMapper;
@@ -58,27 +63,34 @@ public class HelloController {
 	
 	@RequestMapping(value = "/addDiary", method = RequestMethod.GET)
 	public String add(Model model) {
-		return "login";
+		return "upload";
 	}
 	
-	@RequestMapping(value= "/upload", method = RequestMethod.GET)
-	public String upload(@RequestParam Map<String,String> param) {
-		String title = param.get("title");
-		String create_date = param.get("create_date");
-		String content = param.get("content");
-		
-		System.out.println(content);
-		System.out.println(title);
-		System.out.println(create_date);
-		
-//		//Diary d = new Diary();
-//		d.setContent(content);
-//		d.setTitle(title);
-//		d.setCreateDate(new Date(create_date));
+//	@RequestMapping(value= "/upload", method = RequestMethod.GET)
+//	public String upload(@RequestParam Map<String,String> param) {
+//		String title = param.get("title");
+//		String create_date = param.get("create_date");
+//		String content = param.get("content");
 //		
-		System.out.println(title);
-		diaryMapper.insertContent(title, content, create_date);
-		return "success";
-	}
+//		System.out.println(content);
+//		System.out.println(title);
+//		System.out.println(create_date);
+//		
+//		
+//		System.out.println(title);
+//		diaryMapper.insertContent(title, content, create_date);
+//		return "success";
+//	}
 	
+	@RequestMapping(value = "/success", method = RequestMethod.POST) 
+	public @ResponseBody String upload(MultipartFile file) {
+		try {
+			System.out.print("ddddddddddddd");
+			FileUtils.writeByteArrayToFile(new File("e:/upload/" + file.getOriginalFilename()), file.getBytes());
+			return "OK";
+		}catch (IOException e) {
+			e.printStackTrace();
+			return "Wrong";
+		}
+	}
 }
