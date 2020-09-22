@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,9 +60,11 @@ public class HelloController {
 	@RequestMapping(value = "/diary", method = RequestMethod.GET)
 	public String context(Model model) {
 		model.addAttribute("diaries", diaryMapper.getAll());
+		
 		return "diary";
 	}
 	
+
 	@RequestMapping(value = "/addDiary", method = RequestMethod.GET)
 	public String add(Model model) {
 		return "upload";
@@ -83,10 +87,21 @@ public class HelloController {
 //	}
 	
 	@RequestMapping(value = "/success", method = RequestMethod.POST) 
-	public @ResponseBody String upload(MultipartFile file) {
+	public @ResponseBody String upload(MultipartFile file, HttpServletRequest request) {
 		try {
-			System.out.print("ddddddddddddd");
+			//System.out.print("test");
 			FileUtils.writeByteArrayToFile(new File("e:/upload/" + file.getOriginalFilename()), file.getBytes());
+			String title = request.getParameter("title");
+			String create_date = request.getParameter("create_date");
+			String content = request.getParameter("content");
+			
+			System.out.println(content);
+			System.out.println(title);
+			System.out.println(create_date);
+			
+			
+			System.out.println(title);
+			diaryMapper.insertContent(title, content, create_date);
 			return "OK";
 		}catch (IOException e) {
 			e.printStackTrace();
