@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.mapper.DiaryMapper;
 import com.example.demo.mapper.UserMapper;
+import com.github.pagehelper.PageHelper;
 
 
 
@@ -54,12 +56,20 @@ public class HelloController {
 	@RequestMapping(value = "/hello7.do", method = RequestMethod.GET)
 	public String hello7(Model model) {
 		model.addAttribute("users", userMapper.getAll());
+		HashMap<Character, Character> a = new HashMap<Character, Character>();
+		a.put('d', 'c');
+		
 		return "hello";
 	}
 	
 	@RequestMapping(value = "/diary", method = RequestMethod.GET)
-	public String context(Model model) {
-		model.addAttribute("diaries", diaryMapper.getAll());
+	public String context(Model model, @RequestParam(defaultValue="1") int page) {
+		//pagehelper
+		PageHelper.startPage(page, 10);
+		
+		List<Diary> data = diaryMapper.getAll();
+		
+		model.addAttribute("diaries", data);
 		
 		return "diary";
 	}

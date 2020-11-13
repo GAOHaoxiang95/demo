@@ -20,6 +20,13 @@
 		FROM article
 	</select>
 	
+	<!--  
+	<select id="getByPage" resultMap="BaseResultMap" parameterType="java.lang.Int">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM article whe
+	</select>
+	-->
 	<insert id="insertContent" parameterType="java.lang.String">
 		INSERT INTO article (title, content, create_time) VALUES (#{title}, #{content}, #{create_date})
 	</insert>
